@@ -15,3 +15,4 @@ require("vim-options")
 require("lazy").setup("plugins")
 
 vim.keymap.set("n", "<S-R>", ":! python %<CR>")
+vim.keymap.set({"n", "v"}, "<S-Y>", '"+y<CR>')
