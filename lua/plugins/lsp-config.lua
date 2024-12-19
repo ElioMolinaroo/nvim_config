@@ -18,12 +18,24 @@ return {
 
             local lspconfig = require("lspconfig")
             lspconfig.lua_ls.setup({ capabilities = capabilities })
+            lspconfig.gopls.setup({ capabilities = capabilities })
+            lspconfig.rust_analyzer.setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                cmd = {
+                    "rustup",
+                    "run",
+                    "stable",
+                    "rust-analyzer",
+                },
+            })
             lspconfig.basedpyright.setup({
                 capabilities = capabilities,
                 settings = {
                     basedpyright = {
-                        typeCheckingMode = "off" }
-                }
+                        typeCheckingMode = "off",
+                    },
+                },
             })
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
