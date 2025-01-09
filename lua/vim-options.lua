@@ -6,4 +6,5 @@ vim.cmd("set number")
 vim.cmd("set relativenumber")
 vim.cmd("set conceallevel=1")
 vim.cmd("filetype plugin indent on")
+vim.api.nvim_exec("language ru_RU", true)
 vim.g.mapleader = " "
