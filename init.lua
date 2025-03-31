@@ -18,6 +18,13 @@ require("lazy").setup("plugins")
 vim.keymap.set("n", "<S-R>", ":! python %<CR>")
 vim.keymap.set({ "n", "v" }, "<S-Y>", '"+y<CR>')
 
+-- Vim motions shortcuts
+vim.keymap.set('i', '<F13>', '<Esc>', { noremap = true, silent = true })
+vim.keymap.set('v', '<F13>', '<Esc>', { noremap = true, silent = true })
+vim.keymap.set('c', '<F13>', '<Esc>', { noremap = true, silent = true })
+vim.keymap.set('t', '<F13>', '<C-\\><C-n>', { noremap = true, silent = true })
+vim.keymap.set('o', '<F13>', '<Esc>', { noremap = true, silent = true })
+
 -- Use Powershell as  default terminal if the system is not UNIX-based
 if vim.fn.has("win32") == 1 then
 	vim.o.shell = "powershell.exe"
