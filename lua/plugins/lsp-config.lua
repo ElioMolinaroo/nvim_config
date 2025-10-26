@@ -15,21 +15,11 @@ return {
 		"neovim/nvim-lspconfig",
 		config = function()
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
-
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({ capabilities = capabilities })
-			lspconfig.gopls.setup({ capabilities = capabilities })
-			lspconfig.rust_analyzer.setup({
-				capabilities = capabilities,
-				on_attach = on_attach,
-				cmd = {
-					"rustup",
-					"run",
-					"stable",
-					"rust-analyzer",
-				},
-			})
-			lspconfig.basedpyright.setup({
+			-- Configure LSPs
+			vim.lsp.config("lua_ls", { capabilities = capabilities })
+			vim.lsp.config("gopls", { capabilities = capabilities })
+			vim.lsp.config("ruff", { capabilities = capabilities })
+			vim.lsp.config("basedpyright", {
 				capabilities = capabilities,
 				settings = {
 					basedpyright = {
@@ -37,7 +27,15 @@ return {
 					},
 				},
 			})
+			-- Enable LSPs
+			vim.lsp.enable("lua_ls")
+			vim.lsp.enable("gopls")
+			vim.lsp.enable("ruff")
+			vim.lsp.enable("basedpyright")
 
+      vim.diagnostic.config({ virtual_text = true })
+
+			-- Set keybindings
 			vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
 			vim.keymap.set("n", "gd", vim.lsp.buf.references, {})
